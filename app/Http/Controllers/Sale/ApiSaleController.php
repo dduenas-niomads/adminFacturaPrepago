@@ -129,9 +129,13 @@ class ApiSaleController extends Controller
         if (Auth::user()) {
             $params = $request->all();
             $params['order'] = self::optimizeOrderEcommerce(isset($params['order']) ? $params['order'] : null);
-            $response = self::getListParent($params, Auth::user()->role['code'] . '/orders-ecommerce');
-            if (isset($response['body'])) {
-                $response = $response['body'];
+            if (isset($params['report'])) {
+                $response = self::getListParent($params, Auth::user()->role['code'] . '/orders-ecommerce', '&limit=0&period=' . $params['period'] . '&document=' . $params['document'] . '&orderNumber=' . $params['orderNumber']);
+            } else {
+                $response = self::getListParent($params, Auth::user()->role['code'] . '/orders-ecommerce');
+                if (isset($response['body'])) {
+                    $response = $response['body'];
+                }
             }
         }
         return $response;

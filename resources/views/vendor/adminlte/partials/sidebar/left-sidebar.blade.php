@@ -124,6 +124,14 @@
             @if ($licenseType === "LITE")
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
                     <li class="nav-item">
+                        <a href="/sales-report" class="nav-link  @yield('nav-sales-report')">
+                            <i class="fa fa-chart-line nav-icon "></i>
+                            <p>Reporte de ventas</p>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
+                    <li class="nav-item">
                         <a href="/products" class="nav-link  @yield('nav-products')">
                             <i class="fa fa-box-open nav-icon "></i>
                             <p>Productos</p>

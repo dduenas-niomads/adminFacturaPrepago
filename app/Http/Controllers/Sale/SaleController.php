@@ -33,6 +33,13 @@ class SaleController extends Controller
         return $view;
     }
 
+    public function salesReport()
+    {
+        // $ecommerceCredentials = ApiSaleController::getEcommerceCredentials();
+        $view = view('sales.sales-report');
+        return $view;
+    }
+
     public function newSale()
     {
         $view = view('sales.new-sale');

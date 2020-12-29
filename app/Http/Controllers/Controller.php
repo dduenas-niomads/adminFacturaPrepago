@@ -32,6 +32,10 @@ class Controller extends BaseController
         if (isset($params['search']) && isset($params['search']['value'])) {
             $searchValue = $params['search']['value'];
         }
+        // dd('Bearer ' . Auth::user()->access_token, env('API_BUSINESS_URL') . $uri . 
+        //     '?page=' . $page . '&orderBy=' . $orderColumnName . 
+        //     '&orderDir=' . $orderDirection . '&search=' . $searchValue . 
+        //     $additionalQueryParameters);
         $request = HttpClient::withHeaders([
             'Authorization' => 'Bearer ' . Auth::user()->access_token
         ])->get(env('API_BUSINESS_URL') . $uri . 

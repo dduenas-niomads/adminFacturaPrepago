@@ -73,6 +73,7 @@ Route::get('/electronic-invoice', 'Sale\SaleController@electronicInvoice')->name
 Route::get('/sales', 'Sale\SaleController@index')->name('sales');
 Route::get('/new-sale', 'Sale\SaleController@newSale')->name('new-sale');
 Route::get('/sales-ecommerce', 'Sale\SaleController@salesEcommerce')->name('sales-ecommerce');
+Route::get('/sales-report', 'Sale\SaleController@salesReport')->name('sales-report');
 // AUTH ROUTES AND NEW AUTH ROUTES
 Route::get('/ecommerce-access-token', 'Sale\SaleController@salesEcommerceAccessToken')->name('sales-ecommerce-access-token');
 Auth::routes();
