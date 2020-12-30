@@ -8,6 +8,16 @@
 <script src="{{ asset('scripts/datatables/dataTables.responsive.min.js') }}"></script>
 <script src="{{ asset('scripts/datatables/dataTables.buttons.min.js') }}"></script>
 <script src="{{ asset('scripts/datatables/responsive.bootstrap4.min.js') }}"></script>
+
+
+<script src="{{ asset('/plugins/buttons/dataTables.buttons.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('/plugins/buttons/buttons.flash.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('/plugins/buttons/jszip.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('/plugins/buttons/pdfmake.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('/plugins/buttons/vfs_fonts.js') }}" type="text/javascript"></script>
+<script src="{{ asset('/plugins/buttons/buttons.html5.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('/plugins/buttons/buttons.print.min.js') }}" type="text/javascript"></script>
+
 <!-- functions -->
 <script>
     var arrayObject = [];
@@ -28,13 +38,9 @@
                 "url": "/js/languages/datatables/es.json"
             },
             "dom": "Bfrtip",
-            "buttons": [ 
-                // {
-                //   text: "Nueva tienda",
-                //   action: function ( e, dt, node, config ) {
-                //       alert( 'Button activated' );
-                //   }
-                // }
+            "buttons": [
+                { extend: 'excelHtml5', footer: true },
+                { extend: 'pdfHtml5', footer: true, orientation: 'landscape', pageSize: 'LEGAL' }
             ],
             "order": [[ 0, "asc" ]],
             "ajax": function(data, callback, settings) {
