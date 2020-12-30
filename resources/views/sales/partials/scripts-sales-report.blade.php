@@ -67,6 +67,12 @@
                     return data.ruc;
                 }},
                 {'data':   function (data) {
+                    return data.serie;
+                }},
+                {'data':   function (data) {
+                    return data.correlativo;
+                }},
+                {'data':   function (data) {
                     return data.created_at;
                 }},
                 {'data':   function (data) {

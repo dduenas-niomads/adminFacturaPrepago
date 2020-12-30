@@ -46,6 +46,8 @@
 							<tr role="row">
 								<th>Nº de pedido</th>
 								<th>RUC</th>
+                                <th>Serie</th>
+                                <th>Correlativo</th>
 								<th>Fecha</th>
 								<th>Total productos</th>
 								<th>Total descuentos</th>
