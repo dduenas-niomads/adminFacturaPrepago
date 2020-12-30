@@ -70,7 +70,7 @@
                     return data.serie;
                 }},
                 {'data':   function (data) {
-                    return data.correlativo;
+                    return data.correlative;
                 }},
                 {'data':   function (data) {
                     return data.created_at;
