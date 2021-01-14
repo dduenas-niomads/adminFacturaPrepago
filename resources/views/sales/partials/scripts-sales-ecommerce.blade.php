@@ -102,12 +102,12 @@
                 {'data':   function (data) {
                     return data.flag_ei_send ? "Enviado": "Sin enviar";
                 }},
+                "orderable": false},
                 // {'data':   function (data) {
                 //     return '<div class="col-md-12 row">' + 
                 //         '<button title="Generar boleta" type="button" onClick="openInfoModal(' + data.id + ');" class="btn btn-block btn-outline-info"><i class="fas fa-receipt"></i></button>' +
                 //     '</div>';
                 // }, 
-                "orderable": false},
             ],
         });
         openInfoModal = function(id) {
