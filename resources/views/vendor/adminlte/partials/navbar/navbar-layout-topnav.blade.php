@@ -1,4 +1,4 @@
-<nav class="main-header navbar
+<nav class="main-header navbar-dark
     {{ config('adminlte.classes_topnav_nav', 'navbar-expand') }}
     {{ config('adminlte.classes_topnav', 'navbar-white navbar-light') }}">
 

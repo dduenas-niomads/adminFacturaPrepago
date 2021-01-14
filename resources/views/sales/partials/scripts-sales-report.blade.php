@@ -82,23 +82,23 @@
                     return data.created_at;
                 }},
                 {'data':   function (data) {
-                    return data.currency + " " + data.total_line_items_price;
+                    return data.total_line_items_price;
                 }},
                 {'data':   function (data) {
-                    return data.currency + " " + data.total_discounts;
+                    return data.total_discounts;
                 }},
                 {'data':   function (data) {
-                    return data.currency + " " + data.subtotal_price;
+                    return data.subtotal_price;
                 }},
                 {'data':   function (data) {
                     var text_ = "";
                     data.shipping_lines.forEach(element => {
-                        text_ = text_ + "<p>" + data.currency + " " + element.price + "</p>"; 
+                        text_ = text_ + "<p>" + element.price + "</p>"; 
                     });
-                    return text_; data.currency + " " + data.subtotal_price;
+                    return text_; data.subtotal_price;
                 }},
                 {'data':   function (data) {
-                    return data.currency + " " + data.total_price;
+                    return data.total_price;
                 }},
                 {'data':   function (data) {
                     return data.gateway;
