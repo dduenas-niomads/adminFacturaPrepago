@@ -23,6 +23,7 @@
     var arrayObject = [];
     var objectId = 0;
     var ordersTotal = 0;
+    var ordersSubtotal = 0;
     $(function () {
         var saleReportTable = $("#example1").DataTable({
             "info": true,
