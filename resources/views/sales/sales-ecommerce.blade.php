@@ -31,7 +31,7 @@
 								<th>Confirmado</th>
 								<th>Estado</th>
 								<th>Comprobante</th>
-								<th>Opciones</th>
+								<!-- <th>Opciones</th> -->
 							</tr>
 						</thead>
 					</table>
