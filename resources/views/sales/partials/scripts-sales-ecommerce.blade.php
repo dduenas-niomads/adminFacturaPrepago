@@ -87,6 +87,13 @@
                     return data.email;
                 }},
                 {'data':   function (data) {
+                    var text_ = "";
+                    data.line_items.forEach(element => {
+                        text_ = text_ + '<p>*' + element.name + ' - ' + element.quantity + '</p>';
+                    });
+                    return text_;
+                }},
+                {'data':   function (data) {
                     return data.confirmed ? "SI": "NO";
                 }},
                 {'data':   function (data) {

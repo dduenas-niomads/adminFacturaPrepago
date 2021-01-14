@@ -27,6 +27,7 @@
 								<th>Monto final</th>
 								<th>Canal de pagos</th>
 								<th>Usuarios</th>
+								<th>Detalle</th>
 								<th>Confirmado</th>
 								<th>Estado</th>
 								<th>Comprobante</th>
