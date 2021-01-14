@@ -55,6 +55,7 @@
                 }, function(res) {
                     arrayObject = [];
                     ordersTotal = res.ordersTotal;
+                    ordersSubtotal = res.ordersSubtotal;
                     res.body.forEach(element => {
                     arrayObject[element.id] = element;
                     });
@@ -119,7 +120,7 @@
             "footerCallback": function (row, data, start, end, display) {
                 var api = this.api(), data;
                 // Update footer
-                $(api.column(0, {search:'applied'}).footer()).html('<p>TOTAL VENDIDO: PEN ' + parseFloat(ordersTotal).toFixed(2) + '</p><p>' + 'DOCUMENTO: ' + $('#documentInfo').val() + '</p><p>PERIODO: ' + $('#periodInfo').val());
+                $(api.column(0, {search:'applied'}).footer()).html('<p>TOTAL VENDIDO: S/ ' + parseFloat(ordersTotal).toFixed(2) + '</p><p>SUBTOTAL VENDIDO: S/ ' + parseFloat(ordersSubtotal).toFixed(2) + '</p><p>' + 'DOCUMENTO: ' + $('#documentInfo').val() + '</p><p>PERIODO: ' + $('#periodInfo').val());
             }
         });
         // Filter button
