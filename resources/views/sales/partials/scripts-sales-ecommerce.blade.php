@@ -15,14 +15,14 @@
     $(function () {
         $("#example1").DataTable({
             "info": true,
-            "scrollX": true,
+            "scrollX": false,
             "ordering": false,
             "searching": true,
             "processing": true,
             "serverSide": true,
             "lengthChange": false,
             "bPaginate": true,
-            "responsive": true,
+            "responsive": false,
             "language": {
                 "url": "/js/languages/datatables/es.json"
             },
@@ -62,68 +62,104 @@
                     return data.created_at;
                 }},
                 {'data':   function (data) {
-                    return data.currency + " " + data.total_line_items_price;
-                }},
-                {'data':   function (data) {
-                    return data.currency + " " + data.total_discounts;
-                }},
-                {'data':   function (data) {
-                    return data.currency + " " + data.subtotal_price;
+                    return data.currency + " " + parseFloat(data.subtotal_price).toFixed(2);
                 }},
                 {'data':   function (data) {
                     var text_ = "";
                     data.shipping_lines.forEach(element => {
-                        text_ = text_ + "<p>" + data.currency + " " + element.price + "</p>"; 
+                        text_ = text_ + "<p>" + data.currency + " " + parseFloat(element.price).toFixed(2) + "</p>"; 
                     });
-                    return text_; data.currency + " " + data.subtotal_price;
+                    return text_;
                 }},
                 {'data':   function (data) {
-                    return data.currency + " " + data.total_price;
+                    return data.currency + " " + parseFloat(data.total_price).toFixed(2);
                 }},
                 {'data':   function (data) {
                     return data.gateway;
                 }},
                 {'data':   function (data) {
-                    return data.email;
-                }},
-                {'data':   function (data) {
-                    var text_ = "";
-                    data.line_items.forEach(element => {
-                        text_ = text_ + '<p>*' + element.name + ' - ' + element.quantity + '</p>';
-                    });
-                    return text_;
-                }},
-                {'data':   function (data) {
-                    return data.confirmed ? "SI": "NO";
-                }},
-                {'data':   function (data) {
                     return data.financial_status;
                 }},
                 {'data':   function (data) {
-                    return data.flag_ei_send ? "Enviado": "Sin enviar";
-                }},
-                // {'data':   function (data) {
-                //     return '<div class="col-md-12 row">' + 
-                //         '<button title="Generar boleta" type="button" onClick="openInfoModal(' + data.id + ');" class="btn btn-block btn-outline-info"><i class="fas fa-receipt"></i></button>' +
-                //     '</div>';
-                // }, "orderable": false},
+                    return '<div class="col-md-12 row">' + 
+                        '<div class="col-md-12"><button title="Ver más información" type="button" onClick="openInfoModal(' + data.id + ');" class="btn btn-block btn-outline-info"><i class="fa fa-info"></i></button></div>' +
+                    '</div>';
+                }, "orderable": false},
+
             ],
         });
         openInfoModal = function(id) {
-            warehouseId = id;
-            if (arrayWarehouses[warehouseId]) {
+            objectId = id;
+            if (arrayObject[objectId]) {
                 // innerHTML
-                document.getElementById('infoModalCreatedAt').innerHTML = arrayWarehouses[warehouseId].created_at;
-                document.getElementById('infoModalUpdatedAt').innerHTML = arrayWarehouses[warehouseId].updated_at;
-                document.getElementById('infoModalUsers').innerHTML = "Ver usuarios";
-                document.getElementById('infoModalProducts').innerHTML = "Ver stocks";
-                // input value
-                document.getElementById('infoModalCommercialName').value = arrayWarehouses[warehouseId].commercial_name;
-                document.getElementById('infoModalDocumentNumber').value = arrayWarehouses[warehouseId].document_number;
-                document.getElementById('infoModalShowAddress').value = arrayWarehouses[warehouseId].show_address;
-                document.getElementById('infoModalPhone').value = arrayWarehouses[warehouseId].phone;
-                document.getElementById('infoModalEmail').value = arrayWarehouses[warehouseId].email;
-                document.getElementById('infoModalCurrency').value = arrayWarehouses[warehouseId].currency + " - " + getCurrencyName(arrayWarehouses[warehouseId].currency);
+                document.getElementById('infoOrderNumber').innerHTML = arrayObject[objectId].order_number;
+                document.getElementById('infoOrderFinancialStatus').innerHTML = arrayObject[objectId].financial_status;
+                document.getElementById('infoOrderGateway').innerHTML = arrayObject[objectId].gateway;
+                // Billing Address
+                var infoBillingAddress = document.getElementById('infoBillingAddress');
+                if (infoBillingAddress !== null) {
+                    var infoBillingAddress_ = "";
+                    if (arrayObject[objectId].billing_address.length === 0) {
+                        infoBillingAddress.innerHTML = "<li>Email: <b>" + arrayObject[objectId].email + "</b></li>";
+                    } else {
+                        infoBillingAddress_ = infoBillingAddress_ +
+                            "<li>Email: <b>" + arrayObject[objectId].email + "</b></li>";
+                        infoBillingAddress_ = infoBillingAddress_ +
+                            "<li>Código postal: <b>" + arrayObject[objectId].billing_address.zip + "</b></li>";
+                        infoBillingAddress_ = infoBillingAddress_ + 
+                            "<li>Ciudad: <b>" + arrayObject[objectId].billing_address.city + "</b></li>";
+                        infoBillingAddress_ = infoBillingAddress_ + 
+                            "<li>Nombre: <b>" + arrayObject[objectId].billing_address.name + "</b></li>";
+                        infoBillingAddress_ = infoBillingAddress_ + 
+                            "<li>Teléfono: <b>" + arrayObject[objectId].billing_address.phone + "</b></li>";
+                        infoBillingAddress_ = infoBillingAddress_ + 
+                            "<li>País: <b>" + arrayObject[objectId].billing_address.country + "</b></li>";
+                        infoBillingAddress_ = infoBillingAddress_ + 
+                            "<li>Dirección 1: <b>" + arrayObject[objectId].billing_address.address1 + "</b></li>";
+                        infoBillingAddress_ = infoBillingAddress_ + 
+                            "<li>Dirección 2: <b>" + arrayObject[objectId].billing_address.address2 + "</b></li>";
+                        infoBillingAddress_ = infoBillingAddress_ + 
+                            "<li>Provincia: <b>" + arrayObject[objectId].billing_address.province + "</b></li>";
+                        infoBillingAddress.innerHTML = infoBillingAddress_;
+                    }
+                }
+                // Products
+                var infoDetails = document.getElementById('infoDetails');
+                if (infoDetails !== null) {
+                    var infoDetails_ = "";
+                    arrayObject[objectId].line_items.forEach(element => {
+                        infoDetails_ = infoDetails_ + 
+                            "<li>Prenda: <b>" + element.name + "</b></li>";
+                        infoDetails_ = infoDetails_ + 
+                            "<li>Código: <b>" + element.vendor + "</b></li>";
+                        infoDetails_ = infoDetails_ + 
+                            "<li>Precio: <b>" + parseFloat(element.price).toFixed(2) + "</b></li>";
+                        infoDetails_ = infoDetails_ + 
+                            "<li>Cantidad: <b>" + parseFloat(element.quantity).toFixed(2) + "</b></li>";
+                        infoDetails_ = infoDetails_ + "<br>";
+                    });
+                    infoDetails.innerHTML = infoDetails_;
+                }
+                // Amounts
+                var infoAmounts = document.getElementById('infoAmounts');
+                if (infoAmounts !== null) {
+                    var infoAmounts_ = "";
+                    infoAmounts_ = infoAmounts_ + 
+                        "<li>Total prendas: <b>" + parseFloat(arrayObject[objectId].total_line_items_price).toFixed(2) + "</b></li>";
+                    infoAmounts_ = infoAmounts_ + 
+                        "<li>Descuentos: <b>" + parseFloat(arrayObject[objectId].total_discounts).toFixed(2) + "</b></li>";
+                    infoAmounts_ = infoAmounts_ + 
+                        "<li>Subtotal: <b>" + parseFloat(arrayObject[objectId].subtotal_price).toFixed(2) + "</b></li>";
+                    var deliveryAmount = 0;
+                    arrayObject[objectId].shipping_lines.forEach(element => {
+                        deliveryAmount = deliveryAmount + element.price;
+                    });
+                    infoAmounts_ = infoAmounts_ + 
+                        "<li>Delivery: <b>" + parseFloat(deliveryAmount).toFixed(2) + "</b></li>";
+                    infoAmounts_ = infoAmounts_ + 
+                        "<li>Total: <b>" + parseFloat(arrayObject[objectId].total_price).toFixed(2) + "</b></li>";
+                    infoAmounts.innerHTML = infoAmounts_;
+                }
                 $('#modal-info').modal({ backdrop: 'static', keyboard: false });
             } else {
                 alert("Error al abrir modal");
