@@ -40,6 +40,11 @@ class SaleController extends Controller
         return $view;
     }
 
+    public function salesRdc()
+    {
+        dd(Auth::user());
+    }
+
     public function newSale()
     {
         $view = view('sales.new-sale');

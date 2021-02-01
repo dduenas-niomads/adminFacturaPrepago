@@ -16,59 +16,7 @@
             $licenseType = $user->active_license['license']['type'];
             $dateEnd = $user->active_license['date_end'];
         @endphp
-        @if(env('fp')) 
         <!-- 9 1 5 2 7 -->
-            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                <nav class="mt-2 w-100">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
-                    <!-- Add icons to the links using the .nav-icon class
-                        with font-awesome or any other icon font library -->
-                        <li class="nav-item has-treeview menu-open">
-                            @if ($licenseType === "FREE")
-                                <a href="/upgrade" class="nav-link bg-danger">
-                                    <style>
-                                        .involved-share:before {
-                                            content: '{{ $licenseType }} hasta {{ $dateEnd }}';
-                                        }
-                                        .involved-share:hover:before {
-                                            content: 'Mejorar plan!';
-                                        }
-                                    </style>
-                                    <i class="nav-icon fas fa-power-off"></i>
-                                    <p class="involved-share w-100"></p>
-                                </a>
-                            @elseif ($licenseType === "LITE")
-                                <a href="/upgrade" class="nav-link bg-warning">
-                                    <style>
-                                        .involved-share:before {
-                                            content: '{{ $licenseType }} hasta {{ $dateEnd }}';
-                                        }
-                                        .involved-share:hover:before {
-                                            content: 'Ir más lejos!';
-                                        }
-                                    </style>
-                                    <i class="nav-icon fas fa-power-off"></i>
-                                    <p class="involved-share w-100"></p>
-                                </a>
-                            @else
-                                <a href="/upgrade" class="nav-link bg-success">
-                                    <style>
-                                        .involved-share:before {
-                                            content: '{{ $licenseType }} until {{ $dateEnd }}';
-                                        }
-                                        .involved-share:hover:before {
-                                            content: 'Ir más lejos!';
-                                        }
-                                    </style>
-                                    <i class="nav-icon fas fa-power-off"></i>
-                                    <p class="involved-share w-100"></p>
-                                </a>
-                            @endif
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        @endif
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
@@ -86,6 +34,14 @@
                     <a href="/sales-ecommerce" class="nav-link  @yield('nav-sales-ecommerce')">
                         <i class="fa fa-shopping-cart nav-icon "></i>
                         <p>Listado de ventas</p>
+                    </a>
+                </li>
+            </ul>
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
+                <li class="nav-item">
+                    <a href="/sales-rdc" class="nav-link  @yield('nav-sales-rdc')">
+                        <i class="fa fa-shopping-cart nav-icon "></i>
+                        <p>Emisión de boletas</p>
                     </a>
                 </li>
             </ul>
