@@ -37,14 +37,14 @@
                     </a>
                 </li>
             </ul>
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
+            <!-- <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
                 <li class="nav-item">
                     <a href="/sales-rdc" class="nav-link  @yield('nav-sales-rdc')">
                         <i class="fa fa-shopping-cart nav-icon "></i>
                         <p>Emisión de boletas</p>
                     </a>
                 </li>
-            </ul>
+            </ul> -->
         </nav>
         <!-- /.sidebar-menu -->
         <nav class="mt-2" style=" bottom: 0;">
