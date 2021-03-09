@@ -22,6 +22,11 @@
                                 <option value="2020-11">NOVIEMBRE 2020</option>
                                 <option value="2020-12">DICIEMBRE 2020</option>
                                 <option value="2021-01">ENERO 2021</option>
+                                <option value="2021-02">FEBRERO 2021</option>
+                                <option value="2021-03">MARZO 2021</option>
+                                <option value="2021-04">ABRIL 2021</option>
+                                <option value="2021-05">MAYO 2021</option>
+                                <option value="2021-06">JUNIO 2021</option>
                             </select>
                         </div>
                         <div class="col-md-3">
